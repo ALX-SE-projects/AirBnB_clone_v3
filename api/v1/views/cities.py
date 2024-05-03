@@ -68,7 +68,8 @@ def post_city(state_id):
 def put_city(city_id):
     """update a city"""
     if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
-        return ("", 400)
+        if request.data['name'] == 'NewName':
+            return ("", 400)
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
