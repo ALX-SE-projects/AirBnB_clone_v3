@@ -56,6 +56,8 @@ def post_state():
                  strict_slashes=False)
 def put_state(state_id):
     """update a state"""
+    if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
+        return ("", 400)
     state = storage.get("State", state_id)
     if state is None:
         abort(404)
