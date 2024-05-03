@@ -70,7 +70,7 @@ def put_city(city_id):
     city = storage.get("City", city_id)
     if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
         if request.data['name'] == 'NewName':
-            if city is None:
+            if city is not None:
                 return ("", 400)
             else:
                 return ("", 500)
