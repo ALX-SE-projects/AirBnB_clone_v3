@@ -27,8 +27,6 @@ def get_cities(state_id):
                  strict_slashes=False)
 def get_city(city_id):
     """get city information for specified city"""
-    if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
-        return ("", 400)
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
@@ -69,6 +67,8 @@ def post_city(state_id):
                  strict_slashes=False)
 def put_city(city_id):
     """update a city"""
+    if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
+        return ("", 400)
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
