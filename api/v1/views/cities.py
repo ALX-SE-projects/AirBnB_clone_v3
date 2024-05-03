@@ -12,6 +12,8 @@ from models.state import State
                  strict_slashes=False)
 def get_cities(state_id):
     """get city information for all cities in a specified state"""
+    if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
+        return ("", 400)
     state = storage.get("State", state_id)
     if state is None:
         abort(404)
@@ -25,6 +27,8 @@ def get_cities(state_id):
                  strict_slashes=False)
 def get_city(city_id):
     """get city information for specified city"""
+    if request.headers['Content-Type'] == "application/x-www-form-urlencoded":
+        return ("", 400)
     city = storage.get("City", city_id)
     if city is None:
         abort(404)
